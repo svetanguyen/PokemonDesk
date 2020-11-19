@@ -276,7 +276,11 @@ body {
     outline: none !important;
     cursor: pointer;
     font-size: 18px;
+    margin-right: 20px;
 
+}
+.button:last-child {
+    margin-right: 0;
 }
 .button:after {
     content: "";
