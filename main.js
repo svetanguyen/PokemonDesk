@@ -45,6 +45,7 @@ function changeHP(count, person) {
 		person.damageHP = 0;
 		alert('Poor ' + person.name + 'lost');
 		btnKick.disabled = true;
+		kickEnemy.disabled = true;
 	} else {
 		person.damageHP -= count;
 	}
