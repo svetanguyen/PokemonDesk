@@ -29,7 +29,8 @@ const enemy = {
 }
 
 
-
+const {name: charName, damageHP: charDamage, defaultHP: charHP} = character;
+const {name: enemyName, damageHP: enemyDamage, defaultHP: enemyHP} = enemy;
 
 function init() {
 	console.log('Start game');
@@ -69,7 +70,7 @@ function renderHP() {
 
 function changeHP(count) {
 	this.damageHP -= count;
-	const log = this === enemy ? generateLog(this, character, count) : generateLog(this, enemy, count);
+	const log = this === enemy ? generateLog(enemyName, charName, count, this.damageHP, enemyHP) : generateLog(charName, enemyName, count, this.damageHP, charHP);
 	const controlBlock = document.querySelector('#logs');
 	
 		const logBlock = document.createElement('p');
@@ -95,18 +96,18 @@ function random(num) {
 	return Math.ceil(Math.random() * num);
 }
 
-function generateLog(firstPerson, secondPerson, count) {
+function generateLog(firstName, secondName, count, damage, defaultHP) {
 	const logs = [
-	    `${firstPerson.name} вспомнил что-то важное, но неожиданно ${secondPerson.name}, не помня себя от испуга, ударил в предплечье врага. -${count} [${firstPerson.damageHP} / ${firstPerson.defaultHP}]`,
-	    `${firstPerson.name} поперхнулся, и за это ${secondPerson.name} с испугу приложил прямой удар коленом в лоб врага. -${count} [${firstPerson.damageHP} / ${firstPerson.defaultHP}]`,
-	    `${firstPerson.name} забылся, но в это время наглый ${secondPerson.name}, приняв волевое решение, неслышно подойдя сзади, ударил. -${count} [${firstPerson.damageHP} / ${firstPerson.defaultHP}]`,
-	    `${firstPerson.name} пришел в себя, но неожиданно ${secondPerson.name} случайно нанес мощнейший удар. -${count} [${firstPerson.damageHP} / ${firstPerson.defaultHP}]`,
-	    `${firstPerson.name} поперхнулся, но в это время ${secondPerson.name} нехотя раздробил кулаком \<вырезанно цензурой\> противника. -${count} [${firstPerson.damageHP} / ${firstPerson.defaultHP}]`,
-	    `${firstPerson.name} удивился, а ${secondPerson.name} пошатнувшись влепил подлый удар. -${count} [${firstPerson.damageHP} / ${firstPerson.defaultHP}]`,
-	    `${firstPerson.name} высморкался, но неожиданно ${secondPerson.name} провел дробящий удар. -${count} [${firstPerson.damageHP} / ${firstPerson.defaultHP}]`,
-	    `${firstPerson.name} пошатнулся, и внезапно наглый ${secondPerson.name} беспричинно ударил в ногу противника -${count} [${firstPerson.damageHP} / ${firstPerson.defaultHP}]`,
-	    `${firstPerson.name} расстроился, как вдруг, неожиданно ${secondPerson.name} случайно влепил стопой в живот соперника. -${count} [${firstPerson.damageHP} / ${firstPerson.defaultHP}]`,
-	    `${firstPerson.name} пытался что-то сказать, но вдруг, неожиданно ${secondPerson.name} со скуки, разбил бровь сопернику. -${count} [${firstPerson.damageHP} / ${firstPerson.defaultHP}]`
+	    `${firstName} вспомнил что-то важное, но неожиданно ${secondName}, не помня себя от испуга, ударил в предплечье врага. -${count} [${damage} / ${defaultHP}]`,
+	    `${firstName} поперхнулся, и за это ${secondName} с испугу приложил прямой удар коленом в лоб врага. -${count} [${damage} / ${defaultHP}]`,
+	    `${firstName} забылся, но в это время наглый ${secondName}, приняв волевое решение, неслышно подойдя сзади, ударил. -${count} [${damage} / ${defaultHP}]`,
+	    `${firstName} пришел в себя, но неожиданно ${secondName} случайно нанес мощнейший удар. -${count} [${damage} / ${defaultHP}]`,
+	    `${firstName} поперхнулся, но в это время ${secondName} нехотя раздробил кулаком \<вырезанно цензурой\> противника. -${count} [${damage} / ${defaultHP}]`,
+	    `${firstName} удивился, а ${secondName} пошатнувшись влепил подлый удар. -${count} [${damage} / ${defaultHP}]`,
+	    `${firstName} высморкался, но неожиданно ${secondName} провел дробящий удар. -${count} [${damage} / ${defaultHP}]`,
+	    `${firstName} пошатнулся, и внезапно наглый ${secondName} беспричинно ударил в ногу противника -${count} [${damage} / ${defaultHP}]`,
+	    `${firstName} расстроился, как вдруг, неожиданно ${secondName} случайно влепил стопой в живот соперника. -${count} [${damage} / ${defaultHP}]`,
+	    `${firstName} пытался что-то сказать, но вдруг, неожиданно ${secondName} со скуки, разбил бровь сопернику. -${count} [${damage} / ${defaultHP}]`
 	];
 	
 	return logs[random(logs.length) - 1];
