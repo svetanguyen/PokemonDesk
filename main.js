@@ -66,7 +66,6 @@ function renderHP() {
 // character.renderHP()
 
 function changeHP(count) {
-	count = Math.ceil(count*this.defaultHP/100);
 	this.damageHP -= count;
 	const log = this === enemy ? generateLog(this, character, count) : generateLog(this, enemy, count);
 	const controlBlock = document.querySelector('#logs');
