@@ -51,7 +51,7 @@ function renderHPLife() {
 
 
 function renderProgressBarHP() {
-	this.elBar.style.width = this.damageHP/(this.defaultHP/100) + '%' ;
+	this.elBar.style.width = this.damageHP*100/this.defaultHP + '%' ;
 	// console.log(this.elBar.style.width);
 	// console.log(this);
 }
@@ -62,6 +62,8 @@ function renderHP() {
 	this.renderHPLife();
 	this.renderProgressBarHP();
 }
+
+
 
 // character.renderHP()
 
@@ -113,7 +115,7 @@ function generateLog(firstPerson, secondPerson, count) {
 function clickKick(button, person) {
 	button.addEventListener('click', function() {
 		person.changeHP(random(20));
-		// console.log(this.call(enemy));
+		
 	});
 }
 
