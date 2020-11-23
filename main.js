@@ -88,11 +88,7 @@ function changeHP(count) {
 
 }
 
-
-
-function random(num) {
-	return Math.ceil(Math.random() * num);
-}
+const random = (num) => Math.ceil(Math.random() * num);
 
 function generateLog(firstName, secondName, count, damage, defaultHP) {
 	const logs = [
@@ -118,24 +114,15 @@ function generateLog(firstName, secondName, count, damage, defaultHP) {
 
 function clickCount() {
 	let clickAmount = 0;
-	return function() {
+	return () => {
 		clickAmount += 1;
 		console.log(clickAmount);
 	}
 }
 
-function showCounter(counter, num) {
-	return function() {
-		return --num;
-	}
-
-}
-
 function clickLimit(button, num) {
 	let currentClick = 0;
-	
-
-	return function() {
+	return () => {
 		if (++currentClick === num) {
 			button.disabled = true;
 		}
@@ -160,7 +147,7 @@ function clickKick(button, person, counter) {
 	const countLim = clickLimit(button, 6);
 	const minusCount = showCounter(6, counter);
 	
-	button.addEventListener('click', function() {
+	button.addEventListener('click', () => {
 		person.changeHP(random(20));
 		count();
 		countLim();
