@@ -1,6 +1,8 @@
 const btnKick = document.getElementById('btn-kick');
 const kickEnemy = document.getElementById('kick-enemy');
 const controlBlock = document.querySelector('#logs');
+const counterOne = document.querySelector('#btn-kick>.counter');
+const counterTwo = document.querySelector('#kick-enemy>.counter');
 
 const character = {
 	name: 'Pikachu',
@@ -35,9 +37,10 @@ function init() {
 	console.log('Start game');
 	character.renderHP();
 	enemy.renderHP();
-	clickKick(btnKick, character);
-	clickKick(btnKick, enemy);
-	clickKick(kickEnemy, enemy);
+	clickKick(btnKick, character, counterOne);
+	clickKick(btnKick, enemy, counterOne);
+	clickKick(kickEnemy, enemy, counterTwo);
+
 }
 
 function renderHPLife() {
@@ -113,10 +116,56 @@ function generateLog(firstName, secondName, count, damage, defaultHP) {
 	
 }
 
-function clickKick(button, person) {
+function clickCount() {
+	let clickAmount = 0;
+	return function() {
+		clickAmount += 1;
+		console.log(clickAmount);
+	}
+}
+
+function showCounter(counter, num) {
+	return function() {
+		return --num;
+	}
+
+}
+
+function clickLimit(button, num) {
+	let currentClick = 0;
+	
+
+	return function() {
+		if (++currentClick === num) {
+			button.disabled = true;
+		}
+
+
+	}
+
+}
+
+function showCounter(num, counter) {
+	counter.innerText = num;
+	return () => {
+		return counter.innerText = --num;
+	}
+}
+
+// return button.innerText = --num;
+
+
+function clickKick(button, person, counter) {
+	const count = clickCount();
+	const countLim = clickLimit(button, 6);
+	const minusCount = showCounter(6, counter);
+	
 	button.addEventListener('click', function() {
 		person.changeHP(random(20));
-		
+		count();
+		countLim();
+		minusCount();
+
 	});
 }
 
