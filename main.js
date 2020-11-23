@@ -1,5 +1,6 @@
 const btnKick = document.getElementById('btn-kick');
 const kickEnemy = document.getElementById('kick-enemy');
+const controlBlock = document.querySelector('#logs');
 
 const character = {
 	name: 'Pikachu',
@@ -29,8 +30,6 @@ const enemy = {
 }
 
 
-const {name: charName, damageHP: charDamage, defaultHP: charHP} = character;
-const {name: enemyName, damageHP: enemyDamage, defaultHP: enemyHP} = enemy;
 
 function init() {
 	console.log('Start game');
@@ -70,13 +69,9 @@ function renderHP() {
 
 function changeHP(count) {
 	this.damageHP -= count;
+	const {name: charName, damageHP: charDamage, defaultHP: charHP} = character;
+	const {name: enemyName, damageHP: enemyDamage, defaultHP: enemyHP} = enemy;
 	const log = this === enemy ? generateLog(enemyName, charName, count, this.damageHP, enemyHP) : generateLog(charName, enemyName, count, this.damageHP, charHP);
-	const controlBlock = document.querySelector('#logs');
-	
-		const logBlock = document.createElement('p');
-		logBlock.innerText = log;
-		controlBlock.insertBefore(logBlock, controlBlock.children[0]);
-	
 	
 	
 	// console.log(log);
@@ -109,8 +104,13 @@ function generateLog(firstName, secondName, count, damage, defaultHP) {
 	    `${firstName} расстроился, как вдруг, неожиданно ${secondName} случайно влепил стопой в живот соперника. -${count} [${damage} / ${defaultHP}]`,
 	    `${firstName} пытался что-то сказать, но вдруг, неожиданно ${secondName} со скуки, разбил бровь сопернику. -${count} [${damage} / ${defaultHP}]`
 	];
+
 	
-	return logs[random(logs.length) - 1];
+	const logBlock = document.createElement('p');
+	logBlock.innerText = logs[random(logs.length) - 1];
+	controlBlock.insertBefore(logBlock, controlBlock.children[0]);
+	
+	
 }
 
 function clickKick(button, person) {
