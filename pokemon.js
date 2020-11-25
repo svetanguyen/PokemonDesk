@@ -40,9 +40,9 @@ class Pokemon extends Selectors {
 		// console.log(log);
 		if (this.hp.current <= 0 ) {
 			this.hp.current = 0;
-			// alert('Poor ' + this.name + 'lost');
-			// btnKick.disabled = true;
-			// kickEnemy.disabled = true;
+			alert('Poor ' + this.name + 'lost');
+			btnKick.disabled = true;
+			kickEnemy.disabled = true;
 		}
 		this.renderHP();
 		cb && cb(count);

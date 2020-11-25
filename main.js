@@ -26,6 +26,10 @@ console.log(player2);
 
 
 const random = (num) => Math.ceil(Math.random() * num);
+const randomMin = (min = 0, max) => {
+	const num = max - min;
+	return Math.ceil((Math.random() * num) + min);
+};
 
 function generateLog(first, second, count) {
 	const logs = [
@@ -71,11 +75,11 @@ function showCounter(button, num, counter) {
 
 const counterCount = showCounter(btnKick, 10, counterOne);
 btnKick.addEventListener('click', () => {
-	player1.changeHP(random(70), function(count) {
+	player1.changeHP(randomMin(20, 70), function(count) {
 		console.log(this);
 		console.log(generateLog(player1, player2, count));
 	});
-	player2.changeHP(random(80), function(count) {
+	player2.changeHP(randomMin(20, 80), function(count) {
 		console.log('some changes');
 		console.log(generateLog(player2, player1, count));
 	});
@@ -84,7 +88,7 @@ btnKick.addEventListener('click', () => {
 
 const counterCount2 = showCounter(kickEnemy, 6, counterTwo);
 kickEnemy.addEventListener('click', () => {
-	player2.changeHP(random(60), function(count) {
+	player2.changeHP(randomMin(20, 60), function(count) {
 		console.log('some changes');
 		console.log(generateLog(player1, player2, count));
 	});
