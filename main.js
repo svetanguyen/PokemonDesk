@@ -53,14 +53,6 @@ function generateLog(first, second, count) {
 	
 }
 
-function clickCount() {
-	let clickAmount = 0;
-	return () => {
-		clickAmount += 1;
-		console.log(clickAmount);
-	}
-}
-
 
 function showCounter(button, num, counter) {
 	counter.innerText = num;
@@ -76,7 +68,6 @@ function showCounter(button, num, counter) {
 const counterCount = showCounter(btnKick, 10, counterOne);
 btnKick.addEventListener('click', () => {
 	player1.changeHP(randomMin(20, 70), function(count) {
-		console.log(this);
 		console.log(generateLog(player1, player2, count));
 	});
 	player2.changeHP(randomMin(20, 80), function(count) {

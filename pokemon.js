@@ -32,12 +32,6 @@ class Pokemon extends Selectors {
 	};
 	changeHP = (count, cb) => {
 		this.hp.current -= count;
-		// const {name: charName, damageHP: charDamage, defaultHP: charHP} = character;
-		// const {name: enemyName, damageHP: enemyDamage, defaultHP: enemyHP} = enemy;
-		// const log = this === enemy ? generateLog(enemyName, charName, count, this.damageHP, enemyHP) : generateLog(charName, enemyName, count, this.damageHP, charHP);
-		
-		
-		// console.log(log);
 		if (this.hp.current <= 0 ) {
 			this.hp.current = 0;
 			alert('Poor ' + this.name + 'lost');
