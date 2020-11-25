@@ -1,107 +1,44 @@
+import Pokemon from "./pokemon.js";
 const btnKick = document.getElementById('btn-kick');
 const kickEnemy = document.getElementById('kick-enemy');
 const controlBlock = document.querySelector('#logs');
 const counterOne = document.querySelector('#btn-kick>.counter');
 const counterTwo = document.querySelector('#kick-enemy>.counter');
 
-const character = {
+const player1 = new Pokemon({
 	name: 'Pikachu',
-	defaultHP: 250,
-	damageHP: 250,
-	elHP: document.getElementById('health-character'),
-	elBar: document.getElementById('progressbar-character'),
-	renderHPLife: renderHPLife,
-	renderProgressBarHP: renderProgressBarHP,
-	renderHP: renderHP,
-	changeHP: changeHP,
-	clickKick: clickKick,
+	type: 'electric',
+	hp: 500,
+	selectors: 'character'
 
-}
+});
 
-const enemy = {
+console.log(player1);
+
+const player2 = new Pokemon({
 	name: 'Charmander',
-	defaultHP: 250,
-	damageHP: 250,
-	elHP: document.getElementById('health-enemy'),
-	elBar: document.getElementById('progressbar-enemy'),
-	renderHPLife: renderHPLife,
-	renderProgressBarHP: renderProgressBarHP,
-	changeHP: changeHP,
-	renderHP: renderHP,
-	clickKick: clickKick,
-}
+	type: 'fire',
+	hp: 450,
+	selectors: 'enemy'
 
+});
+console.log(player2);
 
-
-function init() {
-	console.log('Start game');
-	character.renderHP();
-	enemy.renderHP();
-	clickKick(btnKick, character, counterOne);
-	clickKick(btnKick, enemy, counterOne);
-	clickKick(kickEnemy, enemy, counterTwo);
-
-}
-
-function renderHPLife() {
-	this.elHP.innerText = this.damageHP + ' / ' + this.defaultHP;
-	// console.log(this.elHP.innerText);
-	// console.log(this);
-};
-
-// character.renderHPLife();
-
-
-
-function renderProgressBarHP() {
-	this.elBar.style.width = this.damageHP*100/this.defaultHP + '%' ;
-	// console.log(this.elBar.style.width);
-	// console.log(this);
-}
-
-// character.renderProgressBarHP();
-
-function renderHP() {
-	this.renderHPLife();
-	this.renderProgressBarHP();
-}
-
-
-
-// character.renderHP()
-
-function changeHP(count) {
-	this.damageHP -= count;
-	const {name: charName, damageHP: charDamage, defaultHP: charHP} = character;
-	const {name: enemyName, damageHP: enemyDamage, defaultHP: enemyHP} = enemy;
-	const log = this === enemy ? generateLog(enemyName, charName, count, this.damageHP, enemyHP) : generateLog(charName, enemyName, count, this.damageHP, charHP);
-	
-	
-	// console.log(log);
-	if (this.damageHP <= 0 ) {
-		this.damageHP = 0;
-		alert('Poor ' + this.name + 'lost');
-		btnKick.disabled = true;
-		kickEnemy.disabled = true;
-	}
-	this.renderHP();
-
-}
 
 const random = (num) => Math.ceil(Math.random() * num);
 
-function generateLog(firstName, secondName, count, damage, defaultHP) {
+function generateLog(first, second, count) {
 	const logs = [
-	    `${firstName} вспомнил что-то важное, но неожиданно ${secondName}, не помня себя от испуга, ударил в предплечье врага. -${count} [${damage} / ${defaultHP}]`,
-	    `${firstName} поперхнулся, и за это ${secondName} с испугу приложил прямой удар коленом в лоб врага. -${count} [${damage} / ${defaultHP}]`,
-	    `${firstName} забылся, но в это время наглый ${secondName}, приняв волевое решение, неслышно подойдя сзади, ударил. -${count} [${damage} / ${defaultHP}]`,
-	    `${firstName} пришел в себя, но неожиданно ${secondName} случайно нанес мощнейший удар. -${count} [${damage} / ${defaultHP}]`,
-	    `${firstName} поперхнулся, но в это время ${secondName} нехотя раздробил кулаком \<вырезанно цензурой\> противника. -${count} [${damage} / ${defaultHP}]`,
-	    `${firstName} удивился, а ${secondName} пошатнувшись влепил подлый удар. -${count} [${damage} / ${defaultHP}]`,
-	    `${firstName} высморкался, но неожиданно ${secondName} провел дробящий удар. -${count} [${damage} / ${defaultHP}]`,
-	    `${firstName} пошатнулся, и внезапно наглый ${secondName} беспричинно ударил в ногу противника -${count} [${damage} / ${defaultHP}]`,
-	    `${firstName} расстроился, как вдруг, неожиданно ${secondName} случайно влепил стопой в живот соперника. -${count} [${damage} / ${defaultHP}]`,
-	    `${firstName} пытался что-то сказать, но вдруг, неожиданно ${secondName} со скуки, разбил бровь сопернику. -${count} [${damage} / ${defaultHP}]`
+	    `${first.name} вспомнил что-то важное, но неожиданно ${second.name}, не помня себя от испуга, ударил в предплечье врага. -${count} [${first.hp.current} / ${first.hp.total}]`,
+	    `${first.name} поперхнулся, и за это ${second.name} с испугу приложил прямой удар коленом в лоб врага. -${count} [${first.hp.current} / ${first.hp.total}]`,
+	    `${first.name} забылся, но в это время наглый ${second.name}, приняв волевое решение, неслышно подойдя сзади, ударил. -${count} [${first.hp.current} / ${first.hp.total}]`,
+	    `${first.name} пришел в себя, но неожиданно ${second.name} случайно нанес мощнейший удар. -${count} [${first.hp.current} / ${first.hp.total}]`,
+	    `${first.name} поперхнулся, но в это время ${second.name} нехотя раздробил кулаком \<вырезанно цензурой\> противника. -${count} [${first.hp.current} / ${first.hp.total}]`,
+	    `${first.name} удивился, а ${second.name} пошатнувшись влепил подлый удар. -${count} [${first.hp.current} / ${first.hp.total}]`,
+	    `${first.name} высморкался, но неожиданно ${second.name} провел дробящий удар. -${count} [${first.hp.current} / ${first.hp.total}]`,
+	    `${first.name} пошатнулся, и внезапно наглый ${second.name} беспричинно ударил в ногу противника -${count} [${first.hp.current} / ${first.hp.total}]`,
+	    `${first.name} расстроился, как вдруг, неожиданно ${second.name} случайно влепил стопой в живот соперника. -${count} [${first.hp.current} / ${first.hp.total}]`,
+	    `${first.name} пытался что-то сказать, но вдруг, неожиданно ${second.name} со скуки, разбил бровь сопернику. -${count} [${first.hp.current} / ${first.hp.total}]`
 	];
 
 	
@@ -120,40 +57,39 @@ function clickCount() {
 	}
 }
 
-function clickLimit(button, num) {
-	let currentClick = 0;
-	return () => {
-		if (++currentClick === num) {
-			button.disabled = true;
-		}
 
-
-	}
-
-}
-
-function showCounter(num, counter) {
+function showCounter(button, num, counter) {
 	counter.innerText = num;
 	return () => {
-		return counter.innerText = --num;
+		--num;
+		if(num === 0) {
+			button.disabled = true;
+		}
+		return counter.innerText = num;
 	}
 }
 
-// return button.innerText = --num;
-
-
-function clickKick(button, person, counter) {
-	const count = clickCount();
-	const countLim = clickLimit(button, 6);
-	const minusCount = showCounter(6, counter);
-	
-	button.addEventListener('click', () => {
-		person.changeHP(random(20));
-		count();
-		countLim();
-		minusCount();
-
+const counterCount = showCounter(btnKick, 10, counterOne);
+btnKick.addEventListener('click', () => {
+	player1.changeHP(random(70), function(count) {
+		console.log(this);
+		console.log(generateLog(player1, player2, count));
 	});
-}
+	player2.changeHP(random(80), function(count) {
+		console.log('some changes');
+		console.log(generateLog(player2, player1, count));
+	});
+	counterCount();
+});
 
-init();
+const counterCount2 = showCounter(kickEnemy, 6, counterTwo);
+kickEnemy.addEventListener('click', () => {
+	player2.changeHP(random(60), function(count) {
+		console.log('some changes');
+		console.log(generateLog(player1, player2, count));
+	});
+	counterCount2();
+
+});
+
+
