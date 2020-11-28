@@ -1,4 +1,4 @@
-import { btnKick, kickEnemy } from "./docEl.js";
+import { btnKick, kickEnemy } from "./utilities.js";
 class Selectors {
 	constructor(name) {
 		this.elHP = document.getElementById(`health-${name}`);
