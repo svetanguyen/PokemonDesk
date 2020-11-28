@@ -1,6 +1,23 @@
-import { random } from "./random.js";
 const controlBlock = document.querySelector('#logs');
-function generateLog(first, second, count) {
+const random = (num) => Math.ceil(Math.random() * num);
+function showCounter(button, num, counter) {
+	counter.innerText = num;
+	return () => {
+		--num;
+		if(num === 0) {
+			button.disabled = true;
+		}
+		return counter.innerText = num;
+	}
+}
+
+export const btnKick = document.getElementById('btn-kick');
+export const kickEnemy = document.getElementById('kick-enemy');
+export const counterOne = document.querySelector('#btn-kick>.counter');
+export const counterTwo = document.querySelector('#kick-enemy>.counter');
+
+
+export function generateLog(first, second, count) {
 	const logs = [
 	    `${first.name} вспомнил что-то важное, но неожиданно ${second.name}, не помня себя от испуга, ударил в предплечье врага. -${count} [${first.hp.current} / ${first.hp.total}]`,
 	    `${first.name} поперхнулся, и за это ${second.name} с испугу приложил прямой удар коленом в лоб врага. -${count} [${first.hp.current} / ${first.hp.total}]`,
@@ -20,4 +37,10 @@ function generateLog(first, second, count) {
 	return logBlock.innerText;
 }
 
-export default generateLog;
+export const randomMin = (min = 0, max) => {
+	const num = max - min;
+	return Math.ceil((Math.random() * num) + min);
+};
+
+export const counterCount = showCounter(btnKick, 10, counterOne);
+export const counterCount2 = showCounter(kickEnemy, 6, counterTwo);

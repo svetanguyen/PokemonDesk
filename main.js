@@ -1,9 +1,21 @@
-import { btnKick, kickEnemy } from "./docEl.js";
-import { counterCount, counterCount2 } from "./showCounter.js";
-import { player1, player2 } from "./players.js";
-import generateLog from "./generatelog.js";
-import showCounter from "./showCounter.js";
-import { randomMin } from "./random.js";
+import Pokemon from "./pokemon.js";
+import { btnKick, kickEnemy, counterCount, counterCount2, generateLog, randomMin } from "./utilities.js";
+
+const player1 = new Pokemon({
+	name: 'Pikachu',
+	type: 'electric',
+	hp: 500,
+	selectors: 'character'
+
+});
+
+const player2 = new Pokemon({
+	name: 'Charmander',
+	type: 'fire',
+	hp: 450,
+	selectors: 'enemy'
+
+});
 
 btnKick.addEventListener('click', () => {
 	player1.changeHP(randomMin(20, 70), function(count) {
