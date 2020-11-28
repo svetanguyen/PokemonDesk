@@ -35,6 +35,8 @@ export function generateLog(first, second, count) {
 	return logBlock.innerText;
 }
 
+export const resetLog = () => controlBlock.innerHTML = '';
+
 
 
 export const randomMin = (min = 0, max) => {

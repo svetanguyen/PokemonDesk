@@ -1,6 +1,6 @@
 import Game from "./constructor.js";
 import { pokemons } from "./pokemons.js";
-import {random} from './utilities.js';
+import {random, resetLog} from './utilities.js';
 const controlPart = document.querySelector('.control');
 const startBtn = document.getElementById('Start');
 let index1 = random(pokemons.length - 1);
@@ -33,6 +33,7 @@ startBtn.addEventListener('click', () => {
 console.log(resetGame);
 
 resetGame.addEventListener('click', () => {
+	resetLog();
 	randomPlayerTwo = pokemons[random(pokemons.length - 1)];
 	player2 = new Game({
 		...randomPlayerTwo,
