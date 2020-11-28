@@ -1,20 +1,18 @@
+
 const controlBlock = document.querySelector('#logs');
-const random = (num) => Math.ceil(Math.random() * num);
-function showCounter(button, num, counter) {
-	counter.innerText = num;
+export const random = (num) => Math.ceil(Math.random() * num);
+export function showCounter(button, num) {
+	const buttonCount = document.createElement('span');
+	button.appendChild(buttonCount);
+	buttonCount.innerText = '(' + num + ')';
 	return () => {
 		--num;
 		if(num === 0) {
 			button.disabled = true;
 		}
-		return counter.innerText = num;
+		return buttonCount.innerText = '(' + num + ')';
 	}
 }
-
-export const btnKick = document.getElementById('btn-kick');
-export const kickEnemy = document.getElementById('kick-enemy');
-export const counterOne = document.querySelector('#btn-kick>.counter');
-export const counterTwo = document.querySelector('#kick-enemy>.counter');
 
 
 export function generateLog(first, second, count) {
@@ -37,10 +35,9 @@ export function generateLog(first, second, count) {
 	return logBlock.innerText;
 }
 
+
+
 export const randomMin = (min = 0, max) => {
 	const num = max - min;
 	return Math.ceil((Math.random() * num) + min);
 };
-
-export const counterCount = showCounter(btnKick, 10, counterOne);
-export const counterCount2 = showCounter(kickEnemy, 6, counterTwo);
