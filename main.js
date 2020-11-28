@@ -29,11 +29,16 @@ let player2 = new Game({
 startBtn.addEventListener('click', () => {
 	player1.startGame(startBtn, player2, player1);
 	
-	
 });
 console.log(resetGame);
 
 resetGame.addEventListener('click', () => {
+	randomPlayerTwo = pokemons[random(pokemons.length - 1)];
+	player2 = new Game({
+		...randomPlayerTwo,
+		selectors: 'player2'
+
+	});
 	player2.resetHP();
 	player1.resetHP();
 	player1.startGame(resetGame, player2, player1);
