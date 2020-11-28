@@ -40,8 +40,10 @@ resetGame.addEventListener('click', () => {
 		selectors: 'player2'
 
 	});
-	player2.resetHP();
 	player1.resetHP();
+	player2.resetHP();
+	player1.resetMessage();
+	player2.resetMessage();
 	player1.startGame(resetGame, player2, player1);
 
 });

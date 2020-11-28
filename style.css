@@ -43,6 +43,15 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
+    background: rgba(0,0,0,.6);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.control p {
+    width: 100%;
+    font-family: "Menlo-regular", sans-serif;
+    color: #fff;
 }
 
 .playground {
@@ -211,6 +220,7 @@ body {
 .pokemon .details .hp .bar .health {
     width: 50%;
     height: 100%;
+    transition: .4s ease width;
     background: -webkit-gradient(linear, left top, right top, from(lime), to(#8bf500));
     background: linear-gradient(to right, lime, #8bf500);
 }
@@ -292,7 +302,7 @@ body {
     min-height: 30px;
     width: 45%;
     vertical-align: middle;
-    padding: 12px 20px;
+    padding: 12px 10px;
     outline: none !important;
     cursor: pointer;
     font-size: 18px;

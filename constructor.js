@@ -1,6 +1,7 @@
 import {showCounter, randomMin, generateLog} from './utilities.js';
 const controlPart = document.querySelector('.control');
 const resetGame = document.getElementById('Reset');
+const message = document.querySelector('.message');
 class Selectors {
 	constructor(name) {
 		this.elHP = document.getElementById(`health-${name}`);
@@ -58,12 +59,15 @@ class Pokemon extends Selectors {
 		this.renderHP();
 	}
 
+	resetMessage = () => message.innerText = '';
 
 	changeHP = (count, cb) => {
 		this.hp.current -= count;
 		if (this.hp.current <= 0 ) {
 			this.hp.current = 0;
-			alert('Poor ' + this.name + ' lost');
+			// alert('Poor ' + this.name + ' lost');
+			
+			message.innerText = 'Poor ' + this.name + ' lost';
 			const allButtons = document.querySelectorAll('.control .button-attack');
 			allButtons.forEach(item => item.remove());		
 			resetGame.style.display = 'inline-block';
@@ -74,6 +78,8 @@ class Pokemon extends Selectors {
 		cb && cb(count);
 
 	};
+
+
 
 	
 }
