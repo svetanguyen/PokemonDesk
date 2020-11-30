@@ -59,15 +59,9 @@ class Gameflow {
 	};
 };
 
-// this is to avoid overlapping of characters
-
-
-// console.log(randomPlayerOne.img);
 
 const game = new Gameflow();
 game.start();
-
-// console.log(pikachu);
 
 
 
