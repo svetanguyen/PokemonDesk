@@ -110,7 +110,7 @@ class Game extends Pokemon {
 				enemy.changeHP(randomMin(item.minDamage, item.maxDamage), function(count) {					
 					console.log(generateLog(enemy, player, count));
 				});
-				setTimeout(this.contrAttack, 1000, enemy, player);
+				setTimeout(this.contrAttack, 400, enemy, player);
 			})
 		});
 		
