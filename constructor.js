@@ -107,11 +107,10 @@ class Game extends Pokemon {
 			btn.addEventListener('click', () => {
 				console.log('Click button', btn.innerText);
 				counterCount();
-				enemy.changeHP(randomMin(item.minDamage, item.maxDamage), function(count) {
-					console.log('some changes');
+				enemy.changeHP(randomMin(item.minDamage, item.maxDamage), function(count) {					
 					console.log(generateLog(enemy, player, count));
 				});
-				this.contrAttack(enemy, player);
+				setTimeout(this.contrAttack, 400, enemy, player);
 			})
 		});
 		
