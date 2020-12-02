@@ -1,0 +1,25 @@
+{
+  "name": "PokemonDesk",
+  "version": "1.0.0",
+  "description": "Pokemon battle",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svetanguyen/PokemonDesk.git"
+  },
+  "author": "Sveta Nguyen",
+  "license": "ISC",
+  "homepage": "https://vibrant-swanson-7357c4.netlify.app",
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "babel-loader": "^8.2.2",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

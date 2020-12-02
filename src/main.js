@@ -5,7 +5,6 @@ const startBtn = document.getElementById('Start');
 const resetGame = document.getElementById('Reset');
 
 
-
 class Gameflow {
 	getPokemons = async () => {
 		const response = await fetch('https://reactmarathon-api.netlify.app/api/pokemons');
